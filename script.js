@@ -63,14 +63,14 @@ const vagas = [
       const index = e.target.getAttribute("data-index");
       const vaga = vagas[index];
       modalBody.innerHTML = `
-        <h2>${vaga.titulo}</h2>
+        <h2 class="tituloModal">${vaga.titulo}</h2>
         <p><strong>Empresa:</strong> ${vaga.empresa}</p>
         <p><strong>Local:</strong> ${vaga.local}</p>
         <p><strong>Salário:</strong> ${vaga.salario}</p>
         <p><strong>Cidade:</strong> ${vaga.cidade}</p>
         <p><strong>Data:</strong> ${vaga.data}</p>
         <p>${vaga.descricao}</p>
-        <p><strong>Contato:</strong> ${vaga.contato}</p>
+        <p class="contatoModal"><strong>Contato:</strong> ${vaga.contato}</p>
       `;
       modal.style.display = "flex";
     });
@@ -84,6 +84,28 @@ const vagas = [
   window.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.style.display = "none";
+    }
+  });
+
+  const menuBurger = document.getElementById("menuBurger");
+  const linksMobi = document.getElementById("linksMobi");
+
+  menuBurger.addEventListener("click", () => {
+    menuBurger.classList.toggle("is-active");
+  
+    // Verifica se a classe 'is-active' foi adicionada (menu aberto)
+    if (menuBurger.classList.contains("is-active")) {
+      linksMobi.style.display = "flex";
+    } else {
+      // Se 'is-active' foi removida (menu fechado)
+      linksMobi.style.display = "none";
+    }
+  });
+  
+  // Garante que os links estejam inicialmente escondidos (opcional, mas recomendado)
+  document.addEventListener("DOMContentLoaded", () => {
+    if (linksMobi) {
+      linksMobi.style.display = "none";
     }
   });
   
